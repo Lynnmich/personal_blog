@@ -1,22 +1,66 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<script src="/static/script.js"></script>
-<div class="gallery">
-    <figure>
-        <img src="image1.png" width="100%">
-        <figcaption>GFG IMAGE 1</figcaption>
-    </figure>
-    <figure>
-        <img src="image2.png" width="100%">
-        <figcaption>GFG IMAGE 2</figcaption>
-    </figure>
-    <figure>
-        <img src="image3.png" width="100%">
-        <figcaption>GFG IMAGE 3</figcaption>
-    </figure>
+<html>
+  
+<head>
+    <h2></h2>
+    <style>
+        h2 {
+            font-family: Papyrus;
+        }
+        body {
+            background-color: #f4f7c5;
+        }
+  
+        .gallery {
+            display: flex;
+            margin: auto;
+            width: 900px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+  
+        figure {
+            width: 250px;
+            margin: 10px 0;
+            background-color: white;
+            border: 1px solid #583506;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+  
+        figcaption {
+            text-align: center;
+            padding: 10px;
+            font-family: Papyrus;
+            font-weight: bold;
+        }
+    </style>
+  
+</head>
+  
+<body>
+<div class="facts-section">
+  <h1 style="font-family: Papyrus;">Did You Know?..</h1>
 </div>
+    <div class="gallery">
+        <figure>
+            <img src="/static/images/image1.jpg" width="100%">
+            <figcaption>Nairobi National Park is unique because it is the only national park in the world located within a capital city's boundaries.</figcaption>
+        </figure>
+        <figure>
+            <img src="/static/images/image2.jpg" width="100%">
+            <figcaption>Northern white rhinos are one of the rarest animals on Earth, with only two females remaining: Najin and Fatu who live in the Ol Pejeta Conservancy.</figcaption>
+        </figure>
+        <figure>
+            <img src="/static/images/image3.jpg" width="100%">
+            <figcaption>Giraffes are known for their long necks, but did you know that they have the same number of neck vertebrae as humans? Both giraffes and humans have seven neck vertebrae.</figcaption>
+        </figure>
+    </div>
 
-      
+</body>
+
+</html>
+
 {% endblock %}

@@ -2,6 +2,44 @@
 
 {% block content %}
 
-    <h1>Destinations</h1>
-    
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissable fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+
+<h1 style="font-family: Papyrus;" >Destinations</h1>
+<br/>
+
+{% for destination in destinations %}
+<div class="shadow p-3 mb-5 bg-body rounded" >
+    <h2 style="font-family: Papyrus;">{{ destination.title }}</h2><br/>
+    <h4 style="font-family: Papyrus;">{{ destination.date_posted }}</h4><br/>
+    <p style="font-family: Papyrus;">{{ destination.content.split('\n')[0] }}</p>
+    {% if destination.content.split('\n')|length > 1 %}
+        <div id="destination{{ destination.id }}" style="display: none;">
+            {% for paragraph in destination.content.split('\n')[1:] %}
+                <p style="font-family: Papyrus;">{{ paragraph }}</p>
+            {% endfor %}
+        </div>
+        <a href="{{ url_for('destination', id=destination.id) }}" "javascript:void(0);" onclick="toggleContent('destination{{ destination.id }}')" class="btn btn-outline-secondary btn-sm">Read More</a>
+    {% endif %}
+    <a href="{{ url_for('edit_destination', id=destination.id) }}" class="btn btn-outline-secondary btn-sm"> Edit Destination</a>
+    <a href="{{ url_for('delete_destination', id=destination.id) }}" class="btn btn-outline-danger btn-sm">Delete Destination</a>
+    <br/><br/> 
+</div>
+
+{% endfor %}
+<script>
+    function toggleContent(elementId) {
+        var content = document.getElementById(elementId);
+        if (content.style.display === 'none') {
+            content.style.display = 'block';
+        } else {
+            content.style.display = 'none';
+        }
+    }
+</script>
+
 {% endblock %}
