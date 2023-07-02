@@ -1,18 +1,48 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+    .image-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+    }
+    
+    .image-container img {
+        width: 40%;
+        position: relative;
+        z-index: 10;
+        transition: all 0.5s;
+        box-shadow: -3px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+    
+    .image-container img:hover {
+        z-index: 20;
+        transform: scale(1.2) rotate(-10deg);
+    }
+    
+    .image-container:hover img:not(:hover) {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    
+    @media screen and (max-width: 500px) {
+        .image-container img {
+            width: 70%;
+        }
+    }
+</style>
 
-{% for message in get_flashed_messages() %}
-    <div class="alert alert-warning alert-dismissable fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-{% endfor %}
-
-<h1  style="font-family: 'Papyrus; text-align: center">Destinations to Inspire Adventure</h1>
+<h1 style="font-family: 'Papyrus'; text-align: center">Destinations to Inspire Adventure</h1>
 <br/>
 
-<div class="shadow p-3 mb-5 bg-body rounded" >
+<div class="image-container">
+    <img src="/static/images/naivasha1.jpg" alt="lion" class="img1">
+    <img src="/static/images/nakuru1.jpg" alt="owl" class="img2">
+    <img src="/static/images/nairobi2.jpg" alt="lion" class="img3">
+</div>
+
+<div class="shadow p-3 mb-5 bg-body rounded">
     <h2 style="font-family: Papyrus;">{{ destination.title }}</h2><br/>
     {% for paragraph in destination.content.split('\n') %}
         <p style="font-family: Papyrus;">{{ paragraph }}</p>

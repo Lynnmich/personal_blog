@@ -2,45 +2,224 @@
 
 {% block content %}
 <html>
-    <head></head>
+    <head>
+        <style>
+            /* Custom CSS styles */
+            body {
+                background-color: #f4f7c5;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+            .home-section {
+                background-image: url("/static/images/home-bg.jpg");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                color: #fff;
+                padding: 100px 0;
+                text-align: center;
+            }
+            .home-section h1 {
+                font-size: 48px;
+                margin-top: 0;
+            }
+            .home-section p {
+                font-size: 24px;
+                margin-bottom: 0;
+            }
+            .image-container {
+                display: flex;
+                justify-content: center;
+                margin-top: 50px;
+            }
+            .image-container img {
+                max-width: 400px;
+                margin: 0 10px;
+            }
+            .container {
+                display: flex;
+                flex-direction: column; /* Updated to vertical direction */
+                align-items: center; /* Center align the sections vertically */
+                margin-top: 50px; /* Added margin to create space between sections */
+            }
+            .post-section {
+                flex-basis: 100%;
+                padding: 20px;
+                display: flex;
+                align-items: flex-start; /* Align items to the top */
+                justify-content: center; /* Center align the content horizontally */
+                background-color: #fff; /* Added background color to differentiate the section */
+                margin-bottom: 50px; /* Added margin to create space between sections */
+            }
+            .post-image {
+                flex-basis: 40%;
+                margin-right: 20px;
+                margin-top: 12px;
+            }
+            .post-image img {
+                max-width: 100%;
+                height: auto;
+            }
+            .post-content {
+                flex-basis: 60%;
+            }
 
+            .about-section {
+                flex-basis: 100%;
+                padding: 20px;
+                display: flex;
+                align-items: flex-start; /* Align items to the top */
+                justify-content: center; /* Center align the content horizontally */
+                background-color: #fff; /* Added background color to differentiate the section */
+                margin-bottom: 50px; /* Added margin to create space between sections */
+            }
+            .about-image {
+                flex-basis: 40%;
+                margin-right: 20px;
+                margin-top: 12px;
+                border-radius: 50%; /* Added border-radius to create a rounded shape */
+                overflow: hidden; /* Added overflow:hidden to hide the excess image content */
+            }
+            .about-image img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+            .about-content {
+                flex-basis: 60%;
+            }
+            .travel-guide {
+                margin-top: 20px;
+                background-color: #f4f7c5;
+                padding: 20px;
+            }
+            .travel-guide h2 {
+                font-size: 24px;
+                margin-bottom: 10px;
+                border-bottom: 2px solid #513a1f;
+                padding-bottom: 5px;
+            }
+
+           .travel-guide h3 {
+            font-family: Papyrus;
+              font-size: 18px;
+              margin-bottom: 10px;
+              border-bottom: 1px solid #513a1f;
+              padding-bottom: 5px;
+            }
+
+
+            .travel-guide p {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .travel-guide a {
+                color: #513a1f;
+                text-decoration: underline;
+            }
+
+            .contact-me {
+                flex-basis: 100%;
+                flex-direction: column;
+                padding: 20px;
+                display: flex;
+                align-items: flex-start; /* Align items to the top */
+                justify-content: center; /* Center align the content horizontally */
+                background-color: #f4f7c5;
+                margin-top: 90px;
+                margin-bottom: 0px; /* Added margin to create space between sections */
+                max-width: 1600px;
+                max-height: 250px;
+            }
+
+            .inspiration-section {
+              margin-right: auto; /* Push the section to the left side */
+              margin-bottom: 20px; /* Add some bottom margin for spacing */
+            }
+        </style>
+    </head>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <body>
         <div class="home-section">
             <div>
             </div>
-            <br/><br/><h1>Tourist on a Budget</h1>
-            <p>Your Ultimate Guide to Affordable Adventure</p>
-          </div>
-
-          <!-- About Me -->
-        <!--<div class="about-section">
-            <h1>About Me</h1>
-            <p>Welcome to Tourist on a Budget, your ultimate guide to exploring the beauty of our country without breaking the bank. I'm [Your Name], a passionate traveler and adventurer who believes that memorable experiences shouldn't be limited by a hefty price tag.</p>
-            <p>Join me as we embrace the joy of domestic travel, connecting with diverse cultures, immersing ourselves in captivating traditions, and creating lifelong memories, all while keeping our wallets happy. Let's embark on this incredible journey together and make the most of what our amazing country has to offer!</p>
+            <br/><br/><h1 style="font-family: Papyrus;">Tourist on a Budget</h1>
+            <p style="font-family: Papyrus;">Your Ultimate Guide to Affordable Adventure</p>
         </div>
+
         <div class="container">
-            <section class="about">
-                <div class="about-image">
-                <img src="/static/images/about.jpg">
+            <div class="post-section">
+                <div class="post-image">
+                    <img src="/static/images/guide-bg.jpg" alt="Giraffe Image">
                 </div>
-                <div class="about-content">
-                    <p>Welcome to Tourist on a Budget, your ultimate guide to exploring the beauty of our country without breaking the bank. I'm [Your Name], a passionate traveler and adventurer who believes that memorable experiences shouldn't be limited by a hefty price tag.</p>
-                <p>Join me as we embrace the joy of domestic travel, connecting with diverse cultures, immersing ourselves in captivating traditions, and creating lifelong memories, all while keeping our wallets happy. Let's embark on this incredible journey together and make the most of what our amazing country has to offer!</p>      
+                <div class="post-content">
+                  <!-- Travel Guide Section -->
+                  <div class="travel-guide">
+                    <h2>Giraffe Centre Nairobi</h2>
+                    <h3>Where Giraffes Reign Supreme: Get Ready for a Neck-stacular Experience!</h3>
+                    <p>The Giraffe Centre in Nairobi, Kenya, where conservation meets unforgettable experiences! is situated on the outskirts of Nairobi, this renowned sanctuary is a must-visit destination for wildlife enthusiasts and nature lovers.</p>
+                    <a href="posts">Read More</a>
+                  </div>
+                    <br/>
                 </div>
-            </section>
+            </div>
+            <div id="about" class="container" style="font-family: Papyrus;">
+              <div class="about-section">
+                  <!--<div class="about-image">
+                      <img src="/static/images/about.jpg" alt="About Image">
+                  </div>-->
+                  <div class="about-content">
+                    <h2>About Me</h2>
+                    <p>Welcome to Tourist on a Budget, your ultimate guide to exploring the beauty of our country without breaking the bank. I'm Lynn, a passionate traveler and adventurer who believes that memorable experiences shouldn't be limited by a hefty price tag.</p>
+                    <p>Join me as we embrace the joy of domestic travel, connecting with diverse cultures, immersing ourselves in captivating traditions, and creating lifelong memories, all while keeping our wallets happy. Let's embark on this incredible journey together and make the most of what our amazing country has to offer!</p>
+                    <hr> 
 
-        </div> -->
+                    <h3>Inspiration</h3>
+                    <p>This project was inspired by my own love for travel and exploration. As someone who has always been passionate about experiencing new places and cultures, I wanted to create a platform that would help fellow travelers discover affordable adventures and make the most of their journeys.</p>
+                    <p>Throughout my travels, I realized that many people are deterred from exploring due to budget constraints. I believe that travel should be accessible to everyone, regardless of their financial limitations. That's why I created Tourist on a Budget - to provide a comprehensive guide for affordable travel and inspire others to embark on their own adventures.</p>
+
+                    <hr>
+
+                    <h3>Portfolio Project for Holberton School</h3>
+                    <p>This project is part of my portfolio for Holberton School, where I am honing my skills as a software engineer. It showcases my ability to develop web applications and incorporate design elements to create a visually appealing and user-friendly experience.</p>
+                    <p>To learn more about Holberton School, you can visit their <a href="https://www.holbertonschool.com">website</a>.</p>
+
+                    <hr>
+
+                    <h3>Team Members</h3>
+                    <ul>  
+                      <li>
+                        <strong>Lynne Michuki</strong>
+                        <ul>
+                          <li><a href="https://www.linkedin.com/in/lynne-michuki-973826175/">LinkedIn</a></li>
+                          <li><a href="https://github.com/lynnmich">GitHub</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+
+                    <br/>
+
+                    <h3>GitHub Repository</h3>
+                      <p>You can find the project's source code on GitHub: <a href="https://github.com/lynnmich/personal_blog">GitHub Repository</a></p>
+                  </div>
+                </div>
+          <br/>
+            </div>
+        </div> 
     </body>
-    <footer>
-        <div class="contact-us">
-          <h2>Contact Us</h2>
-          <div class="media-icons">
-            <a href="#"><i class="fa-brands fa-facebook" style="color: #513a1f;"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter" style="color: #513a1f;"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram" style="color: #513a1f;"></i></a>
-          </div>
+    <!--<footer>
+        <div id="contact" class="container">
+            <div class="contact-me">
+                <h2>Connect with Me!</h2>
+                <div class=""media-icons>
+                    <i class="fa-brands fa-instagram" style="color: #884507;"></i>
+                    <i class="fa-brands fa-facebook" style="color: #884507;"></i>
+                    <i class="fa-brands fa-twitter" style="color: #884507;"></i>
+                </div>
+            </div>
         </div>
-      </footer>      
+    </footer>-->
 </html>    
 
 {% endblock %}

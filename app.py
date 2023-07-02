@@ -1,15 +1,16 @@
 import os
 from os import environ, path
-from flask import Flask, render_template, url_for, flash, redirect
-from datetime import datetime
+from flask import Flask, render_template, url_for, flash, redirect, session, request
+from datetime import date
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, widgets
-from wtforms.validators import DataRequired
+from wtforms import StringField, SubmitField, widgets, PasswordField, BooleanField
+from wtforms.validators import DataRequired, EqualTo, Length
 from flask_wtf.file import FileField, FileAllowed
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask_login import LoginManager
-#from wtforms import TextArea
+import werkzeug 
+from werkzeug.security import generate_password_hash, check_password_hash
+# from wtforms import TextArea
 
 
 #Create a flask instance
@@ -38,7 +39,7 @@ class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200))
     subtitle = db.Column(db.String(200))
-    date_posted = db.Column(db.DateTime)
+    date_posted = db.Column(db.Date, default=date.today)
     content = db.Column(db.Text)
     slug = db.Column(db.String(200))
 
@@ -46,7 +47,7 @@ class Posts(db.Model):
     #def __repr__(self):
         #return f'<Posts {self.title}>'
 
-#Create a posts form
+# Create a posts form
 class PostForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])
     subtitle = StringField("Subtitle", validators=[DataRequired()])
@@ -55,24 +56,63 @@ class PostForm(FlaskForm):
     submit = SubmitField("Submit")
 
 
-#Create a Destinations model
+
+# Create a Destinations model
 class Destinations(db.Model):
     __tablename__ = 'destinations'
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200))
-    date_posted = db.Column(db.DateTime)
+    date_posted = db.Column(db.Date, default=date.today)
     content = db.Column(db.Text)
 
     # Create a string
     #def __repr__(self):
-        #return f'<Posts {self.title}>'
+        #return f'<Destinations {self.title}>'
 
 #Create a destinations form
 class DestinationForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])
     content = StringField("Content", validators=[DataRequired()], widget=widgets.TextArea())
     submit = SubmitField("Submit")
+
+
+
+# Create an Admin Model
+class Admin(db.Model):
+    __tablename__ = 'admin'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    date_added = db.Column(db.Date, default=date.today)
+    email = db.Column(db.String(128), nullable=False, unique=True )
+    password_hash = db.Column(db.String(20), nullable=False)
+
+    @property
+    def password(self):
+        raise AttributeError('password is not readable')
+    
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
+    
+        # Create a string
+    #def __repr__(self):
+        #return f'<Admin {self.name}>'
+
+
+
+# Create a form for admin
+class AdminForm(FlaskForm):
+    name = StringField("Name", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired()])
+    password_hash = PasswordField("Password", validators=[DataRequired(), EqualTo('password_hash2', message='Passwords must match!')])
+    password_hash2 = PasswordField("Confirm Password", validators=[DataRequired()])
+    submit = SubmitField("Submit")
+     
 
 
 # Create route decorators
@@ -114,7 +154,7 @@ def posts():
 
 @app.route('/posts/<int:id>')
 def post(id):
-    post = Posts.query.get_or_404(id)
+    post = Posts. query.get_or_404(id)
     return render_template('post.html', post=post)
 
 @app.route('/posts/edit/<int:id>', methods=['GET', 'POST'])
@@ -133,11 +173,13 @@ def edit_post(id):
 
         flash(" Travel Guide has been updated successfully!")
         return redirect(url_for("post", id=post.id))
+    
     form.title.data = post.title
     form.subtitle.data = post.subtitle
     form.slug.data = post.slug
     form.content.data = post.content
     return render_template('edit_post.html', form=form)
+
 
 @app.route('/posts/delete/<int:id>')
 def delete_post(id):
@@ -161,7 +203,6 @@ def delete_post(id):
         posts = Posts.query.order_by(Posts.date_posted)
         return render_template("posts.html", posts=posts)
 
-# End of route decorators
 
 # Route decorators for destinations page
 @app.route('/add_destination', methods=['GET', 'POST'])
@@ -210,6 +251,7 @@ def edit_destination(id):
 
         flash("Destination has been updated successfully!")
         return redirect(url_for("destination", id=destination.id))
+    
     form.title.data = destination.title
     form.content.data = destination.content
     return render_template('edit_destination.html', form=form)
@@ -235,6 +277,57 @@ def delete_destination(id):
         # Return all posts from the db
         destinations = Destinations.query.order_by(Destinations.date_posted)
         return render_template("destinations.html", destinations=destinations)
+
+# Create an Admin page
+@app.route('/admin')
+def admin():
+    return render_template("admin.html")
+
+@app.route('/add_admin', methods=['GET', 'POST'])
+def add_admin():
+    name = None
+    form = AdminForm()
+    if form.validate_on_submit():
+        admin = Admin.query.filter_by(email=form.email.data).first()
+        if admin is None:
+            admin = Admin(name=form.name.data, email=form.email.data, password_hash=form.password_hash.data)
+            db.session.add(admin)
+            db.session.commit()
+        name = form.name.data
+        form.name.data = ''
+        form.email.data = ''
+        form.password_hash =''
+
+        flash("Admin added successfully!")
+        my_admin = Admin.query.order_by(Admin.id)
+        return render_template("add_admin.html",
+        form=form,
+        name=name,
+        my_admin=my_admin)
+    
+    return render_template("add_admin.html", form=form, name=name)
+    
+
+# Update Database 
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update(id):
+    name_to_update = Admin.query.get_or_404(id)
+    form = AdminForm(obj=name_to_update)
+    if form.validate_on_submit():
+        name_to_update.name = form.name.data
+        name_to_update.email = form.email.data
+        name_to_update.password = form.password_hash.data
+
+        try:
+            db.session.commit()
+            flash('Admin credentials updated successfully!')
+            return redirect(url_for('admin'))
+        except:
+            flash('Oops! There was an error updating Admin credentials')
+
+    return render_template("update.html", form=form, name_to_update=name_to_update)
+# End of Route Decorators
+
 
 
 # Custom Error page decorator

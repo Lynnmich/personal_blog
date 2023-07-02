@@ -10,6 +10,7 @@ flask-migrate = "*"
 flask-wtf = "*"
 wtforms = "*"
 flask-login = "*"
+werkzeug = "*"
 
 [dev-packages]
 
