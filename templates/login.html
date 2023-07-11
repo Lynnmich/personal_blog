@@ -16,7 +16,7 @@
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
         <label for="tab-1" class="tab">LOGIN</label>
         <input id="tab-2" type="radio" name="tab" class="sign-up">
-        <label for="tab-2" class="tab"><a href="{{ url_for('add_admin') }}">ADD ADMIN</a></label>
+        <label for="tab-2" class="tab"><a href="{{ url_for('add_admin') }}" style="color: #fff;">ADD ADMIN</a></label>
         <div class="login-form">
             <div class="sign-in-htm">
                 <form method="POST" enctype="multipart/form-data">
@@ -62,7 +62,8 @@ a{color:inherit;text-decoration:none}
 	position:relative;
 	background:url(/static/images/login.jpg) no-repeat center;
 	background-size: cover;
-	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.7),0 17px 50px 0 rgba(0,0,0,.5);
+	filter: brightness(90%);
 }
 .login-html{
 	width:100%;
@@ -171,7 +172,7 @@ a{color:inherit;text-decoration:none}
 	color:#fff;
 }
 .login-form .group .check:checked + label .icon{
-	background:#1161ee;
+	background: #fff;
 }
 .login-form .group .check:checked + label .icon:before{
 	transform:scale(1) rotate(45deg);

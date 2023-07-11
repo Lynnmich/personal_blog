@@ -12,8 +12,23 @@
 <h1 style="font-family: Papyrus;" >Travel Guides</h1>
 <br/>
 
+<div class="stamp-container">
+    <img src="/static/images/stamps20.jpg" alt="Stamp 1" class="stamp" />
+    <img src="/static/images/stamps9.jpg" alt="Stamp 2" class="stamp" />
+    <img src="/static/images/stamps10.jpg" alt="Stamp 3" class="stamp" />
+    <img src="/static/images/stamps21.jpg" alt="Stamp 4" class="stamp" />
+    <img src="/static/images/stamps22.jpg" alt="Stamp 5" class="stamp" />
+    <img src="/static/images/stamps23.jpg" alt="Stamp 6" class="stamp" />
+    <img src="/static/images/stamps24.jpg" alt="Stamp 7" class="stamp" />
+    <img src="/static/images/stamps13.jpg" alt="Stamp 8" class="stamp" />
+    <img src="/static/images/stamps14.jpg" alt="Stamp 9" class="stamp" />
+    <img src="/static/images/stamps2.jpg" alt="Stamp 10" class="stamp" />
+    <img src="/static/images/stamps18.jpg" alt="Stamp 11" class="stamp" />
+    <img src="/static/images/stamps16.jpg" alt="Stamp 12" class="stamp" />
+</div>
+
 {% for post in posts %}
-<div class="shadow p-3 mb-5 bg-body rounded" >
+<div class="shadow p-3 mb-5 bg-body rounded" style="background: #f4f7c5;" >
     <h2 style="font-family: Papyrus;">{{ post.title }}</h2><br/>
     <h3 style="font-family: Papyrus;">{{ post.subtitle }}</h3><br/>
     <h4 style="font-family: Papyrus;">{{ post.date_posted }} | {{ post.slug }}</h4><br/>
@@ -22,13 +37,13 @@
     {% if post.content.split('\n')|length > 1 %}
         <div id="post{{ post.id }}" style="display: none;">
             {% for paragraph in post.content.split('\n')[1:] %}
-                <p style="font-family: Papyrus;">{{ paragraph }}</p>
+                <p style="font-family: Papyrus;">{{ paragraph | safe }}</p>
             {% endfor %}
         </div>
-        <a href="{{ url_for('post', id=post.id) }}" "javascript:void(0);" onclick="toggleContent('post{{ post.id }}')" class="btn btn-outline-secondary btn-sm">Read More</a>
+        <a href="{{ url_for('post', id=post.id) }}" "javascript:void(0);" onclick="toggleContent('post{{ post.id }}')" class="btn btn-outline-secondary btn-sm" style="background-color: #743e0c;">Read More</a>
     {% endif %}
     {% if current_user.is_authenticated %}
-    <a href="{{ url_for('edit_post', id=post.id) }}" class="btn btn-outline-secondary btn-sm"> Edit Travel Guide</a>
+    <a href="{{ url_for('edit_post', id=post.id) }}" class="btn btn-outline-secondary btn-sm" style="background-color: #743e0c;"> Edit Travel Guide</a>
     <a href="{{ url_for('delete_post', id=post.id) }}" class="btn btn-outline-danger btn-sm">Delete Travel Guide</a>
     {% endif %}
     <br/><br/> 
@@ -45,4 +60,81 @@
         }
     }
 </script>
+
+<style>
+    .stamp-container {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+pointer-events: none; 
+z-index: -1;
+}
+
+.stamp {
+position: absolute;
+width: 100px; 
+height: 140px;
+opacity: 0.6;
+pointer-events: none; 
+transform: rotate(10deg);
+}
+
+.stamp:nth-child(1) {
+top: 600px;
+left: 1200px;
+}
+
+.stamp:nth-child(2) {
+top: 1200px;
+right: 100px;
+}
+
+.stamp:nth-child(3) {
+top: 1800px;
+left: 1000px;
+/* Add additional styles for the third stamp */
+}
+
+.stamp:nth-child(4) {
+top: 1800px;
+left: 150px;
+}
+
+.stamp:nth-child(6) {
+  top: 1000px;
+  left: 1000px;
+}
+
+.stamp:nth-child(7) {
+top: 800px;
+left: 250px;
+}
+
+.stamp:nth-child(8) {
+  top: 250px;
+  left: 1000px;
+}
+
+.stamp:nth-child(9) {
+top: 400px;
+left: 150px;
+}
+
+.stamp:nth-child(10) {
+  top: 10px;
+  left: 1200px;
+}
+
+.stamp:nth-child(11) {
+top: 1350px;
+left: 1200px;
+}
+
+.stamp:nth-child(12) {
+  top: 1500px;
+  left: 250px;
+}
+</style>
 {% endblock %}
