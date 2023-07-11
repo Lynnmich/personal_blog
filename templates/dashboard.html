@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <br/><br/><h1 style="font-family: Papyrus; text-decoration: underline;">Dashboard</h1>
+  <br/>
+  
+  <p>Hello, welcome to the dashboard.</p>
+
+  <br/>
+  <div class="lists">
+    <div class="travel-guides">
+      <h2>Travel Guides</h2>
+      <hr>
+      <p>Here is the list of the travel guides you've added:</p>
+      <ul>
+        {% for guide in guides %}
+          <ul>{{ guide.title }}</ul>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="destinations">
+      <h2>Destinations</h2>
+      <hr>
+      <p>Here is the list of the destinations you've added:</p>
+      <ul>
+        {% for destination in destinations %}
+          <ul>{{ destination.title }}</ul>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <br/><br/>
+  <a href="{{ url_for('logout') }}" class="button rounded-pill" style="background: #743e0c; color: #fff; width: 150px; height: 40px; display: flex; align-items: center; justify-content: center;">Log Out</a>
+
+{% endblock %}

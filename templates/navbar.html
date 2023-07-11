@@ -32,44 +32,57 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-navbar">
-      <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
+    <nav class="navbar navbar-expand-lg text-black sticky-navbar" style="background-color: #deb887;">
+      <a class="navbar-brand" href="{{ url_for('index') }}" style="font-family: Papyrus; color: black;">Home</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
   
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto" style="font-family: Papyrus;">
           <li class="nav-item active">
-            <a class="nav-link" href="#about">About Me <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#about" style="color: black;">About Me <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('destinations')}}">Destinations</a>
+            <a class="nav-link" href="{{url_for('destinations')}}" style="color: black">Destinations</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('posts')}}">Travel Guides</a>
+            <a class="nav-link" href="{{url_for('posts')}}" style="color: black;">Travel Guides</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('facts')}}">Funfacts</a>
+            <a class="nav-link" href="{{url_for('facts')}}" style="color: black;">Funfacts</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {% if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('logout')}}" style="color: black;">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+          <a class="nav-link" href="{{url_for('login')}}" style="color: black;">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('add_admin')}}" style="color: black;">Add Admin</a>
+          </li>
+          {% endif %}
+
+        {% if current_user.is_authenticated %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #000;">
             Dropdown
             </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{url_for('add')}}"> Add Travel Guide</a>
-            <a class="dropdown-item" href="{{url_for('add_destination')}}"> Add Destination</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="color: black;">
+            <a class="dropdown-item" href="{{url_for('add')}}" style="color: black;"> Add Travel Guide</a>
+            <a class="dropdown-item" href="{{url_for('add_destination')}}" style="color: black;"> Add Destination</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
+        {% endif%}
       </ul>
-      <!--
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <form method="POST" action="{{ url_for('search')}}" class="d-flex">
+        {{ form.hidden_tag() }}
+        <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search" name="searched"  >
+        <button class="button rounded-pill" type="submit" style="background-color: #743e0c; width: 120px;">Search</button>
       </form>
-    -->
   </nav>
 </div>
 </body>

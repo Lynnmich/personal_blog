@@ -12,17 +12,29 @@
 <h1  style="font-family: 'Papyrus;">Travel Guides</h1>
 <br/>
 
-<div class="shadow p-3 mb-5 bg-body rounded" >
+<div class="shadow p-3 mb-5 bg-body rounded">
     <h2 style="font-family: Papyrus;">{{ post.title }}</h2><br/>
     <h3 style="font-family: Papyrus;">{{ post.subtitle }}</h3><br/>
     <h4 style="font-family: Papyrus;">{{ post.date_posted }} | {{ post.slug }}</h4><br/>
-    <!--<h5 style="font-family: Papyrus;">{{ post.content }}</h5>-->
     {% for paragraph in post.content.split('\n') %}
-        <p style="font-family: Papyrus;">{{ paragraph }}</p>
+        <p style="font-family: Papyrus;">{{ paragraph | safe }}</p>
     {% endfor %}
+    <iframe
+    width="300"
+    height="300"
+    style="border:0"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDKeFfXleXLNlQD_nISlxMN-ZBo2ThX7AU
+       &q={{ post.latitude }},{{ post.longitude }}">
+    </iframe>
+
     <br/><br/>
 </div>
 
 <a href="{{ url_for('posts') }}" class="btn btn-outline-secondary btn-sm">Back to Guides</a>
+
+
 
 {% endblock %}

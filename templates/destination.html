@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<style>
+<!--<style>
     .image-container {
         display: flex;
         justify-content: center;
@@ -31,25 +31,24 @@
             width: 70%;
         }
     }
-</style>
+</style>-->
 
 <h1 style="font-family: 'Papyrus'; text-align: center">Destinations to Inspire Adventure</h1>
 <br/>
 
-<div class="image-container">
-    <img src="/static/images/naivasha1.jpg" alt="lion" class="img1">
-    <img src="/static/images/nakuru1.jpg" alt="owl" class="img2">
-    <img src="/static/images/nairobi2.jpg" alt="lion" class="img3">
-</div>
+<!--<div class="image-container">
+    <img src="/static/images/naivasha1.jpg" alt="image1" class="img1">
+    <img src="/static/images/nakuru1.jpg" alt="image2" class="img2">
+    <img src="/static/images/nairobi2.jpg" alt="image3" class="img3">
+</div>-->
 
 <div class="shadow p-3 mb-5 bg-body rounded">
     <h2 style="font-family: Papyrus;">{{ destination.title }}</h2><br/>
-    {% for paragraph in destination.content.split('\n') %}
-        <p style="font-family: Papyrus;">{{ paragraph }}</p>
-    {% endfor %}
+    <h4 style="font-family: Papyrus;">{{ destination.content | safe }}</h4><br/>
+
     <br/><br/>
 </div>
 
-<a href="{{ url_for('destinations') }}" class="btn btn-outline-secondary btn-sm">Back to Destinations</a>
+<a href="{{ url_for('destinations') }}" class="btn btn-outline-secondary btn-sm" style="background-color: #ffffec;">Back to Destinations</a>
 
 {% endblock %}

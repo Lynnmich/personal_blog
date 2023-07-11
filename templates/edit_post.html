@@ -36,9 +36,22 @@
         {{ form.slug(class="form-control") }}
         <br/>
 
+        {{ form.latitude.label(class="form-label") }}
+
+        {{ form.latitude(class="form-control") }}
+        <br/>
+
+        {{ form.longitude.label(class="form-label") }}
+
+        {{ form.longitude(class="form-control") }}
+        <br/>
+
         {{ form.submit(class="btn btn-secondary") }}
 
     </form>
+    {{ ckeditor.load() }}
+    {{ ckeditor.config(name='content') }}
+    
 </div>
 
 

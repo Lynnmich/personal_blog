@@ -18,7 +18,7 @@
     <h3 style="font-family: Papyrus;">{{ post.subtitle }}</h3><br/>
     <h4 style="font-family: Papyrus;">{{ post.date_posted }} | {{ post.slug }}</h4><br/>
     <!--<h5 style="font-family: Papyrus;">{{ post.content }}</h5>-->
-    <p style="font-family: Papyrus;">{{ post.content.split('\n')[0] }}</p>
+    <p style="font-family: Papyrus;">{{ post.content.split('\n')[0] | safe }}</p>
     {% if post.content.split('\n')|length > 1 %}
         <div id="post{{ post.id }}" style="display: none;">
             {% for paragraph in post.content.split('\n')[1:] %}
@@ -27,8 +27,10 @@
         </div>
         <a href="{{ url_for('post', id=post.id) }}" "javascript:void(0);" onclick="toggleContent('post{{ post.id }}')" class="btn btn-outline-secondary btn-sm">Read More</a>
     {% endif %}
+    {% if current_user.is_authenticated %}
     <a href="{{ url_for('edit_post', id=post.id) }}" class="btn btn-outline-secondary btn-sm"> Edit Travel Guide</a>
     <a href="{{ url_for('delete_post', id=post.id) }}" class="btn btn-outline-danger btn-sm">Delete Travel Guide</a>
+    {% endif %}
     <br/><br/> 
 </div>
 

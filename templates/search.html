@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissable fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+
+  <br/><br/><br/><br/>
+  <h2>You searched for: {{ searched }}</h2>
+  <br/>
+
+  {% if posts %}
+  {% for post in posts %}
+    <a href="{{ url_for('post', id=post.id)}}" style="font-family: Papyrus;">{{ post.title }}</a><br/>
+  {% endfor %}
+
+  {% else %}
+  <br/>
+  Sorry, your search term: {{ searched }} did not yield any results..
+  {% endif %}
+
+{% endblock %}
