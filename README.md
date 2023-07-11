@@ -6,8 +6,7 @@ Description
 Features
 Installation
 Usage
-Contributing
-License
+
 
 ## Description
  Tourist on a Budget is a platform dedicated to encouraging domestic tourism in Kenya by showcasing the country's destination cities and providing comprehensive guides to popular tour sites. Whether you're an avid traveler or someone looking for budget-friendly travel options, this blog offers insights, tips, and recommendations to help you explore Kenya's rich culture, heritage, and natural beauty.
