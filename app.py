@@ -47,7 +47,7 @@ def load_admin(admin_id):
     return Admin.query.get(int(admin_id))
 
 # Google Maps API Key
-app.config["GOOGLEMAPS_KEY"] = "AIzaSyDKeFfXleXLNlQD_nISlxMN-ZBo2ThX7AU"
+app.config["GOOGLEMAPS_KEY"] = "Google_maps_key"
 GoogleMaps(app)
 
 # Get the absolute path of the project directory
