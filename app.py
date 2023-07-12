@@ -54,6 +54,7 @@ GoogleMaps(app)
 # UPLOAD_FOLDER = 'static/images/'
 #app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+
 #Create a Blog post model
 class Posts(db.Model):
     __tablename__ = 'posts'
