@@ -34,7 +34,7 @@
     {% if destination.content.split('\n')|length > 1 %}
         <div id="destination{{ destination.id }}" style="display: none;">
             {% for paragraph in destination.content.split('\n')[1:] %}
-                <p style="font-family: Papyrus;">{{ paragraph }}</p>
+                <p style="font-family: Papyrus;">{{ paragraph | safe }}</p>
             {% endfor %}
         </div>
         <a href="{{ url_for('destination', id=destination.id) }}" "javascript:void(0);" onclick="toggleContent('destination{{ destination.id }}')" class="btn btn-outline-secondary btn-sm" style="background-color: #743e0c;">Read More</a>
@@ -45,8 +45,8 @@
     {% endif %}
         <br/><br/> 
 </div>
-
 {% endfor %}
+
 <script>
     function toggleContent(elementId) {
         var content = document.getElementById(elementId);
