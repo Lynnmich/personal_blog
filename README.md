@@ -5,7 +5,6 @@ Tourist on a Budget is a personal blog aimed at promoting domestic tourism in Ke
 Description
 Features
 Installation
-Usage
 
 
 ## Description
