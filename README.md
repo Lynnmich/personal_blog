@@ -38,10 +38,10 @@ The code implements functionality for adding, editing, and deleting posts, desti
 
 ## Installation
 ### Local development 🔧
-##### clone the repository
+##### Clone the repository
 `https://github.com/Lynnmich/personal_blog.git`
 
-##### cd in the project directory
+##### Cd in the project directory
 $ `cd personal_blog/`
 
 ##### Start local dev server
