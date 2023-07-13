@@ -1,5 +1,6 @@
 ## Tourist on a Budget
-Tourist on a Budget is a personal blog aimed at promoting domestic tourism in Kenya. Discover the beauty of Kenya's destination cities through detailed guides featuring various tour sites and attractions.
+Tourist on a Budget is a personal blog aimed at promoting domestic tourism in Kenya. Discover the beauty of Kenya's destination cities through detailed guides featuring various tour sites and attractions.  
+  
 
 
 ![Screenshot (39)](https://github.com/Lynnmich/personal_blog/assets/99338832/b4021b35-fa25-4b38-a845-0c7515a84a7a)
@@ -33,8 +34,8 @@ The code implements functionality for adding, editing, and deleting posts, desti
 📝 Guides Single Page  
 🗂️ Destinations Page  
 📄 Destination Single Page  
-📝 Funfacts Page  
-📞 Connect with me Page  
+📄 Funfacts Page  
+📞 Connect with me   
 
 ## Installation
 ### Local development 🔧
