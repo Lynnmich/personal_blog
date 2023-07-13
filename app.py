@@ -521,3 +521,5 @@ def page_not_found(e):
 
 # End of Custom Error page decorator
 
+if __name__ == "__main__":
+    app.run()
