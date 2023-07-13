@@ -48,9 +48,6 @@ $ `cd personal_blog/`
 $ `gunicorn app:app`
 
 ### Deployment and hosting ⚙️
-Deploy to Render  
-Follow the steps.
-
 #### Deployed Site: [https://tourist-on-a-budget.onrender.com/]
 #### Blog Article: [https://medium.com/@lynnenmichuki/tourist-on-a-budget-portfolio-project-alx-7d3db00d4da3]
 #### LinkedIn: [https://www.linkedin.com/in/lynne-michuki-973826175/]
