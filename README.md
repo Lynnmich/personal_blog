@@ -19,22 +19,22 @@ Tourist on a Budget is a personal blog aimed at promoting domestic tourism in Ke
 
 
 ## Features
-The code covers modules for handling file operations, database interactions, user authentication, form handling, and integrating Google Maps. 
+The code covers modules for handling file operations, database interactions, user authentication, form handling, and integrating Google Maps.   
 
-The code defines several models, including the "Posts" model for blog posts, the "Destinations" model for travel destinations, and the "Admin" model for managing administrators. 
+The code defines several models, including the "Posts" model for blog posts, the "Destinations" model for travel destinations, and the "Admin" model for managing administrators.   
 
-It also defines forms for creating and editing posts, destinations, and administrators. The code sets up a SQLite database, configures the Flask application, and initializes the necessary extensions. It defines route decorators for different pages, such as the homepage, blog posts, destinations, admin panel, login/logout, and error pages. 
+It also defines forms for creating and editing posts, destinations, and administrators. The code sets up a SQLite database, configures the Flask application, and initializes the necessary extensions. It defines route decorators for different pages, such as the homepage, blog posts, destinations, admin panel, login/logout, and error pages.   
 
 The code implements functionality for adding, editing, and deleting posts, destinations, and administrators. It also includes features like search, user authentication, and error handling. Finally, the code runs the Flask application on the local server.
 
 ### Pre-Designed Pages
-ℹ️ Home/About Page
-📄 Guides Page
-📝 Guides Single Page
-🗂️ Destinations Page
-📄 Destination Single Page
-📝 Funfacts Page
-📞 Connect with me Page
+ℹ️ Home/About Page  
+📄 Guides Page  
+📝 Guides Single Page  
+🗂️ Destinations Page  
+📄 Destination Single Page  
+📝 Funfacts Page  
+📞 Connect with me Page  
 
 ## Installation
 ### Local development 🔧
@@ -48,10 +48,10 @@ $ `cd personal_blog/`
 $ `gunicorn app:app`
 
 ### Deployment and hosting ⚙️
-Deploy to Render
-
+Deploy to Render  
+Follow the steps.
 
 #### Deployed Site: [https://tourist-on-a-budget.onrender.com/]
 #### Blog Article: [https://medium.com/@lynnenmichuki/tourist-on-a-budget-portfolio-project-alx-7d3db00d4da3]
 #### LinkedIn: [https://www.linkedin.com/in/lynne-michuki-973826175/]
-Follow the steps.
+
