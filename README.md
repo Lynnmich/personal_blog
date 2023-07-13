@@ -2,17 +2,17 @@
 Tourist on a Budget is a personal blog aimed at promoting domestic tourism in Kenya. Discover the beauty of Kenya's destination cities through detailed guides featuring various tour sites and attractions.
 
 
-🔧Local development
-# clone the repository
+####🔧Local development
+##### clone the repository
 https://github.com/Lynnmich/personal_blog.git
 
-# cd in the project directory
+##### cd in the project directory
 $ cd personal_blog/
 
-# Start local dev server
+##### Start local dev server
 $ gunicorn app:app
 
-⚙️Deployment and hosting
+####⚙️Deployment and hosting
 Deploy to Render
 
 Follow the steps.
