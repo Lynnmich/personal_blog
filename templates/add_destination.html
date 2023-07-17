@@ -10,15 +10,6 @@
 {% endfor %}
 
 <br/><br/><h2>Add a Destination</h2>
-<style>
-    h2{
-        font-family: Papyrus;
-    }
-    div{
-        font-family: Papyrus;
-        font-weight: bold;
-    }
-</style>
 <br/><br/>
 <div class="shadow p-3 mb-5 bg-body rounded">
     <form method="POST" enctype="multipart/form-data">
@@ -40,5 +31,14 @@
     {{ ckeditor.load() }}
     {{ ckeditor.config(name='content') }}
 </div>
+<style>
+    h2{
+        font-family: Papyrus;
+    }
+    div{
+        font-family: Papyrus;
+        font-weight: bold;
+    }
+</style>
 
 {% endblock %}

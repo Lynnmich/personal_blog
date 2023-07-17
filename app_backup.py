@@ -2,15 +2,19 @@ import os
 from os import environ, path
 from flask import Flask, render_template, url_for, flash, redirect, session, request
 from datetime import date
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, widgets, PasswordField, BooleanField
+from wtforms.validators import DataRequired, EqualTo, Length
+from flask_wtf.file import FileField, FileAllowed
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import werkzeug 
-from flask_ckeditor import CKEditor
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_ckeditor import CKEditor
+from flask_ckeditor import CKEditorField
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_googlemaps import GoogleMaps, Map
 from werkzeug.utils import secure_filename
-from forms import LoginForm, PostForm, AdminForm, DestinationForm, SearchForm
 
 
 #Create a flask instance
@@ -70,6 +74,20 @@ class Posts(db.Model):
     #def __repr__(self):
         #return f'<Posts {self.title}>'
 
+# Create a posts form
+class PostForm(FlaskForm):
+    title = StringField("Title", validators=[DataRequired()])
+    subtitle = StringField("Subtitle", validators=[DataRequired()])
+    # content = StringField("Content", validators=[DataRequired()], widget=widgets.TextArea())
+    content = CKEditorField('Content', validators=[DataRequired()])
+    slug = StringField("Slugfield", validators=[DataRequired()])
+    latitude = StringField("Latitude", validators=[DataRequired()])
+    longitude = StringField("Longitude", validators=[DataRequired()])
+    # image1 = FileField("Image", validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
+    # image2 = FileField("Image", validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
+    submit = SubmitField("Submit")
+
+
 
 # Create a Destinations model
 class Destinations(db.Model):
@@ -80,9 +98,17 @@ class Destinations(db.Model):
     date_posted = db.Column(db.Date, default=date.today)
     content = db.Column(db.Text, nullable=False)
 
+
     # Create a string
     #def __repr__(self):
         #return f'<Destinations {self.title}>'
+
+#Create a destinations form
+class DestinationForm(FlaskForm):
+    title = StringField("Title", validators=[DataRequired()])
+    content = CKEditorField('Content', validators=[DataRequired()])
+    # content = StringField("Content", validators=[DataRequired()], widget=widgets.TextArea())
+    submit = SubmitField("Submit")
 
 
 # Create an Admin Model
@@ -112,6 +138,28 @@ class Admin(db.Model, UserMixin):
         #return f'<Admin {self.name}>'
 
 
+
+# Create a form for admin
+class AdminForm(FlaskForm):
+    name = StringField("Name", validators=[DataRequired()])
+    admin_name = StringField("Admin_name", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired()])
+    password_hash = PasswordField("Password", validators=[DataRequired(), EqualTo('password_hash2', message='Passwords must match!')])
+    password_hash2 = PasswordField("Confirm Password", validators=[DataRequired()])
+    submit = SubmitField("Submit")
+
+
+# Create Login Form
+class LoginForm(FlaskForm):
+	admin_name = StringField("Admin_name", validators=[DataRequired()])
+	password = PasswordField("Password", validators=[DataRequired()])
+	submit = SubmitField("Submit")
+     
+
+# Create a search form
+class SearchForm(FlaskForm):
+    searched = StringField("Searched", validators=[DataRequired()])
+    submit = SubmitField("Search")
 
 # Create route decorators
 @app.route('/')
@@ -419,6 +467,12 @@ def login():
 
     return render_template('login.html', form=form)
 
+
+
+'''@app.route('/dashboard', methods=['GET', 'POST'])
+@login_required
+def dashboard():
+    return render_template('dashboard.html')'''
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
